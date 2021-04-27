@@ -3,9 +3,10 @@ import axios from 'axios'
 import { createMuiTheme,ThemeProvider } from '@material-ui/core/styles';
 import React from 'react';
 import { Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@material-ui/core';
-import {faEye,faEdit, faTrashAlt} from '@fortawesome/free-regular-svg-icons'
+import {faEye,faEdit, faTrashAlt,faPlusSquare} from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {Link, useHistory} from 'react-router-dom'
+import EstoqueInterface from '../../Estoque';
 export const Estoque = () => {
     const theme = createMuiTheme();
     const history = useHistory();
@@ -16,10 +17,7 @@ export const Estoque = () => {
        
     };
     
-    interface Estoque{
-        id : Int32Array,
-        nomeEstoque : String,
-    }
+
     const [estoque,setEstoque] = React.useState([]);
 
 
@@ -45,7 +43,9 @@ export const Estoque = () => {
                     Estoque
                 </Typography>
             </ThemeProvider>
+            
             <div className="table">
+            <div className="add"><Link to="/estoque/create"><FontAwesomeIcon size='2x' icon={faPlusSquare}></FontAwesomeIcon></Link></div>
             <TableContainer component={Paper}>
             <Table size="small" aria-label="customized table" >
                 <TableHead>
@@ -58,7 +58,7 @@ export const Estoque = () => {
                 </TableRow>
                 </TableHead>
                 <TableBody>
-          {estoque.map((row : Estoque) => (
+          {estoque.map((row : EstoqueInterface) => (
             <TableRow key={row.id.toString()}>
               <TableCell scope="row">
                 <b>{row.id}</b>

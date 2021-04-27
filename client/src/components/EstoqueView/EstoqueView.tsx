@@ -15,7 +15,7 @@ export const EstoqueView = () => {
         <div className="screenName">
                         <ThemeProvider theme={theme}>
                 <Typography variant="h3">
-                    Produtos
+                    Produtos do Estoque
                 </Typography>
             </ThemeProvider>
         </div>

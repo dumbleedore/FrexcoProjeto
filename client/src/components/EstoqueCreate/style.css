@@ -9,12 +9,7 @@ body{
     flex-direction: column;
 }
 
-.table{
-    margin:auto;
-    width:1000px;
-    height:100px
-}
-.add{
-    text-align: end;
-    margin:10px 0;
+.formItem{
+    display: block;
+    margin:10px;
 }
