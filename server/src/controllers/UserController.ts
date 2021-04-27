@@ -26,6 +26,15 @@ export const userPost = async(req:Request, res:Response) =>{
       return res.status(200).json({auth:true,token:token,id:id,username:username});
     }
   });
-  
-
+  }
+  export const createUser = async(req:Request,res : Response) =>{
+    const body = req.body;
+    User.create({
+      username : body.username,
+      password : body.password
+    }).then(async(user) =>{
+      await user.save();
+    } ).then(() =>{
+      res.status(200).json({message:'USER CREATED'});
+    })
 }

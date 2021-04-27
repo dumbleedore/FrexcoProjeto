@@ -8,9 +8,3 @@ body{
     justify-content: center;
     flex-direction: column;
 }
-
-.table{
-    margin:auto;
-    width:1000px;
-    height:100px
-}

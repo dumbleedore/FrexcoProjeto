@@ -9,8 +9,8 @@ body{
     flex-direction: column;
 }
 
-.table{
-    margin:auto;
-    width:1000px;
-    height:100px
+.form{
+    display: flex;
+    justify-content: center;
+    margin: 30px 0px;
 }
