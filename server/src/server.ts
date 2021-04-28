@@ -2,9 +2,7 @@ import express from 'express';
 import {config as dotenv} from "dotenv";
 import {router as UserRouter} from './routes/UserRoute';
 import {router as EstoqueRouter} from './routes/EstoqueRoute';
-//import User from './models/User';
-//import Produto from './models/Produto';
-//import Estoque from './models/Estoque';
+import {router as ProdutoRouter} from './routes/ProdutoRoute';
 import sequelize from './config/Database';
 const app = express();
 dotenv();
@@ -29,11 +27,11 @@ try {
   console.error('Unable to connect to the database:', error);
 }
 
-//Estoque.hasOne(Produto)
 //sequelize.sync({force:true})
 // ROUTES
 app.use('/user',UserRouter);
 app.use('/estoque',EstoqueRouter);
+app.use('/produto',ProdutoRouter);
 
 
 

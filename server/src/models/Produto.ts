@@ -14,6 +14,14 @@ const Produto = sequelize.define('produto',{
     value:{
         type:DataTypes.FLOAT,allowNull:false
 
+    },
+    estoqueId:{
+        type:DataTypes.INTEGER,
+        references:{
+            model:'estoques',
+            key:'id'
+        },
+        allowNull:false  
     }
 });
 
