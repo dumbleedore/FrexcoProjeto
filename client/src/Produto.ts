@@ -5,6 +5,7 @@ interface ProdutoInterface{
     nomeProduto : string,
     quantidade : Int32Array,
     value : Float32Array
+    createdAt : string
 }
 
 export default ProdutoInterface;

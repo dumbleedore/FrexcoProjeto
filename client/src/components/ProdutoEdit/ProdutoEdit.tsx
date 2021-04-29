@@ -3,9 +3,11 @@ import React from 'react'
 import { useHistory, useParams} from 'react-router-dom';
 import axios from 'axios';
 import './style.css';
-export const EstoqueEdit = () => {
+export const ProdutoEdit = () => {
     const { id } = useParams<{ id: string }>();
     const [nome,setNome] = React.useState('');
+    const [value,setValue] = React.useState('');
+    const [qtd,setQtd] = React.useState('');
     const theme = createMuiTheme();
     const classes = useStyles();
     const history = useHistory();
@@ -15,27 +17,16 @@ export const EstoqueEdit = () => {
     fontFamily:'Bangers',
        
     };
-    React.useEffect(() =>{
-      async function getEstoque(){
-        await axios.post('http://localhost:5000/estoque/find', {
-            idEstoque : id
-          })
-          .then(async function (response) {
-             await setNome(response.data?.nomeEstoque);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-      }
-      getEstoque();
-    },[id])
 
-    async function editarEstoque() {
-            await axios.post(`http://localhost:5000/estoque/edit/${id}`, {
-                nomeEstoque : nome
+    async function editarProduto() {
+        console.log('a')
+            await axios.post(`http://localhost:5000/produto/edit/${id}`, {
+                nomeProduto : nome,
+                value : value,
+                quantidade : qtd
+
               })
-              .then(async function (response) {
-                  console.log(response)
+              .then(async function () {
                   history.push('/estoque');
               })
               .catch(function (error) {
@@ -47,12 +38,14 @@ export const EstoqueEdit = () => {
         <div className="screenName">
             <ThemeProvider theme={theme}>
                 <Typography variant="h3">
-                    Editar Estoque
+                    Editar Produto
                     </Typography>
                 <div className="form">
                     <form>
-                        <TextField onChange={(event) => setNome(event.target.value)} className={classes.formItem}  label="Nome" type="Text"></TextField>
-                        <Button onClick={editarEstoque}  className={classes.formItem} color="primary">Entrar</Button>
+                        <TextField onChange={(event) => setNome(event.target.value)} className={classes.formItem}   label="Nome" type="Text"></TextField>
+                        <TextField onChange={(event) => setValue(event.target.value)} className={classes.formItem}  label="Valor" type="number"></TextField>
+                        <TextField onChange={(event) => setQtd(event.target.value)} className={classes.formItem}  label="Quantidade" type="number"></TextField>
+                        <Button onClick={editarProduto}  className={classes.formItem} color="primary">Editar</Button>
                     </form>
                 </div>           
             </ThemeProvider>

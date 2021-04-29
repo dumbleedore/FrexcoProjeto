@@ -1,6 +1,6 @@
 import { faEdit, faEye, faPlusSquare, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {Link, useParams} from 'react-router-dom'
+import {Link, useHistory, useParams} from 'react-router-dom'
 import { createMuiTheme, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, ThemeProvider, Typography } from '@material-ui/core';
 import React from 'react'
 import axios from 'axios';
@@ -9,6 +9,7 @@ import './style.css';
 export const EstoqueView = () => {
     const { id } = useParams<{ id: string }>();
     const theme = createMuiTheme();
+    const history = useHistory();
     theme.typography.h3 = {
     fontSize: '3rem',
     textAlign:'center',
@@ -25,7 +26,6 @@ export const EstoqueView = () => {
                 estoqueId : parseInt(id)
               })
               .then(async function (response) {
-                  console.log(response.data);
                   setProduto(response.data);
               })
               .catch(function (error) {
@@ -33,7 +33,7 @@ export const EstoqueView = () => {
               });
         }
         getProdutos();
-    },[])
+    },[id])
     return (
         <div className="screenName">
                         <ThemeProvider theme={theme}>
@@ -72,17 +72,17 @@ export const EstoqueView = () => {
                 <b>{row.quantidade}</b>
               </TableCell>
               <TableCell  scope="row">
-                <Link to={`estoque/${row.id}`}>
+                <Link to={`produto/view/${row.id}`}>
                   <FontAwesomeIcon icon={faEye}/>
                 </Link>
               </TableCell>
               <TableCell  scope="row">
-                <Link to={`estoque/edit/${row.id}`}>
+                <Link to={`produto/edit/${row.id}`}>
                   <FontAwesomeIcon icon={faEdit}/>
                 </Link>
               </TableCell>
               <TableCell  scope="row">
-                <Link to={`/estoque`}>
+                <Link to="/estoque" onClick={() => axios.delete(`http://localhost:5000/produto/delete/${row.id}`).then(() => history.go(0))}>
                   <FontAwesomeIcon icon={faTrashAlt}/>
                 </Link>
               </TableCell>

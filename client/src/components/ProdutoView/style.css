@@ -1,0 +1,14 @@
+body{
+    background: #88BC23;
+    
+}
+
+.screenName{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.produto{
+    margin: auto;
+}
