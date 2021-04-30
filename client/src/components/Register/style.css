@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&display=swap');
+.background{
+        height: 100vh;
+        width: 100%;
+        background-color: #88BC23;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-width: 400px;
+}
+
+
+

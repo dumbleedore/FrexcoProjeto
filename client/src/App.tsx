@@ -8,11 +8,13 @@ import { EstoqueCreate } from './components/EstoqueCreate/EstoqueCreate';
 import { ProdutoCreate } from './components/ProdutoCreate/ProdutoCreate';
 import { ProdutoView } from './components/ProdutoView/ProdutoView';
 import { ProdutoEdit} from './components/ProdutoEdit/ProdutoEdit';
+import Register from './components/Register/Register';
 const App = () => {
     return (
             <BrowserRouter>
                 <Switch>
                     <Route exact path="/" component={Login}></Route>
+                    <Route exact path="/register" component={Register}></Route>
                     <PrivateRoute exact path="/estoque" component={Estoque}></PrivateRoute>
                     <PrivateRoute exact path="/estoque/create" component={EstoqueCreate}></PrivateRoute>
                     <PrivateRoute exact path="/estoque/:id" component={EstoqueView}></PrivateRoute>
